@@ -1,0 +1,67 @@
+MariaDB [(none)]> create database zabbix character set utf8 collate utf8_bin;
+
+Query OK, 1 row affected (0.00 sec)
+
+
+
+MariaDB [(none)]> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+MariaDB [(none)]> flush privileges;
+
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> show databases;
+
++--------------------+
+
+| Database           |
+
++--------------------+
+
+| information_schema |
+
+| mysql              |
+
+| performance_schema |
+
+| zabbix             |
+
++--------------------+
+
+4 rows in set (0.00 sec)
+
+
+
+MariaDB [(none)]> select user,host from mysql.user;
+
++--------+-----------+
+
+| user   | host      |
+
++--------+-----------+
+
+| root   | localhost |
+
+| zabbix | localhost |
+
++--------+-----------+
+
+2 rows in set (0.00 sec)
+
+
+
+apt-get install language-pack-zh-hant language-pack-zh-hans
+
+root@u:~# apt install fonts-wqy-microhei -y
+
+root@u:~# cp /usr/share/fonts/truetype/wqy/wqy-microhei.ttc /usr/share/zabbix/assets/fonts/graphfont.ttf 
+
+
+
+root@u:~# zabbix_get  -s 192.168.1.101 -k system.uname
+
+Linux u 4.15.0-70-generic #79-Ubuntu SMP Tue Nov 12 10:36:11 UTC 2019 x86_64
